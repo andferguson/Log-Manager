@@ -7,21 +7,12 @@
 ###################
 ###################
 
-# IMPORTANT NOTES:
-#   1. Set EXECUTABLE to the command name given in the project specification.
-#   2. To enable automatic creation of unit test rules, your program logic
-#      (where main() is) should be in a file named project*.cpp or specified
-#      in the PROJECTFILE variable.
-#   3. Files you want to include in your final submission cannot match the
-#      test*.cpp pattern.
-
 # enables c++11 on CAEN
 PATH := /usr/um/gcc-4.8.3/bin:$(PATH)
 LD_LIBRARY_PATH := /usr/um/gcc-4.8.3/lib64
 LD_RUN_PATH := /usr/um/gcc-4.8.3/lib64
 
-# TODO #
-# Change EXECUTABLE to match the command name given in the project spec.
+# designate name for EXECUTABLE
 EXECUTABLE 	= logman
 
 # designate which compiler to use

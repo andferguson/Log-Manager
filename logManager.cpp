@@ -26,27 +26,22 @@ struct Log_Entrie {
 //struct LOGcomparator
 struct LOGcomparator {
 	bool operator()(const Log_Entrie* a, const Log_Entrie* b) const {
-		if(a->timestamp < b->timestamp) //if a.timestamp is smaller
-			return 1;
-
-		else if(a->timestamp > b->timestamp) //if a.timestamp is larger
-			return 0;
-
-		else { //if a.timestamp and b.timestamp are equal
-
-			if(a->category < b->category) //if a.category is smaller
-				return 1;
-
-			else if(a->category > b->category) //if a.category is larger
-				return 0;
-
-			else { //if a.compare and b.compare are equal
-
-				if(a->entryID < b->entryID) //if a.entryID is smaller
-					return 1;
-
-				else //a.entryID is larger
-					return 0;
+		//if a.timestamp is smaller
+		if(a->timestamp < b->timestamp) { return 1; }
+		//if a.timestamp is larger
+		else if(a->timestamp > b->timestamp) { return 0; }
+		//if a.timestamp and b.timestamp are equal
+		else {
+			//if a.category is smaller
+			if(a->category < b->category) { return 1; }
+			//if a.category is larger
+			else if(a->category > b->category) { return 0; }
+			//if a.compare and b.compare are equal
+			else {
+				//if a.entryID is smaller
+				if(a->entryID < b->entryID) { return 1; }
+				//a.entryID is larger
+				else { return 0; }
 			}
 		}
 	}
@@ -56,14 +51,12 @@ struct LOGcomparator {
 //struct TIMEcomparator
 struct TIMEcomparator {
 	bool operator()(const Log_Entrie* a, const Log_Entrie* b) const {
-		if(a->timestamp < b->timestamp) //if a.timestamp is smaller
-			return 1;
-
-		else if(a->timestamp > b->timestamp) //if a.timestamp is larger
-			return 0;
-
-		else //if a.timestamp and b.timestamp are equal
-			return 0;
+		//if a.timestamp is smaller
+		if(a->timestamp < b->timestamp) { return 1; }
+		//if a.timestamp is larger
+		else if(a->timestamp > b->timestamp) { return 0; }
+		//if a.timestamp and b.timestamp are equal
+		else { return 0; }
 	}
 };
 
@@ -79,16 +72,18 @@ int main(int argc, char *argv[]) {
 	string LOGFILE = {};
 
 	if(argc != 2) {
-		cerr << "Error: Improper Arguments " << endl << '\t' << "Use --help or -h" << endl;
+		cerr << "Error: command line arguments" << endl << '\t' << "use --help or -h" << endl;
 		exit(1);
 	}
 
 	if(strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
-		os << "Log Manager by Andrew Ferguson" << '\n' << '\n'
-			<< "This program ..." << '\n'
-			<< '\n' << "Flags:" << '\n'
-			<< '\t' << "LOGFILE" << '\t' << '\t' << "-specifies the file to read logs from" << '\n'
-			<< '\t' << "--help, -h" << '\t' << "-prints this helpful message" << '\n'
+		os << "Log Manager by Andrew Ferguson" << '\n'
+			<< "Designed to search, parse, and edit log files." << '\n'
+			<< '\n'
+			<< '\n' << "Getting Started:" << '\n'
+			<< '\n' << "Run on an example log with `logman example-log.txt`" << '\n'
+			<< '\n' << "This project also supports input and output redirection, run with `logman example-log.txt < example-cmds.txt > example-output.txt`" << '\n'
+			<< '\n'
 			<< '\n' << "Commands:" << '\n'
 			<< '\t' << "t ­= timestamp search" << '\n'
 			<< '\t' << "Syntax: % t <timestamp1>|<timestamp2>" << '\n' << '\n'
@@ -131,7 +126,7 @@ int main(int argc, char *argv[]) {
 	LOGFILE = argv[1];
 
 	if(LOGFILE.empty()) {
-		cerr << "Error: LOGFILE not read" << endl << '\t' << "argv[1]: " << argv[1] << endl;
+		cerr << "Error: LOGFILE not read" << endl;
 		exit(1);
 	}
 
@@ -153,7 +148,7 @@ int main(int argc, char *argv[]) {
 
 	if(infile.is_open()) {
 		if(line.empty()) {
-			cerr << "Error: unable to read from file" << endl << '\t' << "LOGFILE: " << LOGFILE << endl;
+			cerr << "Error: unable to read from file" << endl;
 			exit(1);
 		}
 
@@ -272,7 +267,7 @@ int main(int argc, char *argv[]) {
 //		Syntax: % g
 		else if(arg == "g") {
 			if(search == 'n') {
-				cerr << "Error: Invalid command" << endl;
+				cerr << "Error: invalid command" << endl;
 			}
 
 			else {
@@ -326,7 +321,7 @@ int main(int argc, char *argv[]) {
 		else if(arg == "b") {
 			cin >> int_arg;
 			if(int_arg >= int (excerpt_list.size())) {
-				cerr << "Error: Invalid command" << endl;
+				cerr << "Error: invalid command" << endl;
 			}
 
 			else {
@@ -341,7 +336,7 @@ int main(int argc, char *argv[]) {
 		else if(arg == "e") {
 			cin >> int_arg;
 			if(int_arg >= int (excerpt_list.size())) {
-				cerr << "Error: Invalid command" << endl;
+				cerr << "Error: invalid command" << endl;
 			}
 
 			else {
@@ -356,7 +351,7 @@ int main(int argc, char *argv[]) {
 		else if(arg == "t") {
 			cin >> string_arg1;
 			if(int (string_arg1.size()) != 29) {
-				cerr << "Error: Invalid command" << endl;
+				cerr << "Error: invalid command" << endl;
 			}
 
 			else {
@@ -379,7 +374,7 @@ int main(int argc, char *argv[]) {
 		else if(arg == "m") {
 			cin >> string_arg1;
 			if(int (string_arg1.size()) != 14) {
-				cerr << "Error: Invalid command" << endl;
+				cerr << "Error: invalid command" << endl;
 			}
 
 			else {
@@ -458,7 +453,7 @@ int main(int argc, char *argv[]) {
 		else if(arg == "a") {
 			cin >> int_arg;
 			if(int_arg >= int (master_log_file.size()) || int_arg < 0) {
-				cerr << "Error: Invalid command" << endl;
+				cerr << "Error: invalid command" << endl;
 			}
 
 			else {
@@ -477,7 +472,7 @@ int main(int argc, char *argv[]) {
 //		Syntax: % r
 		else if(arg == "r") {
 			if(search == 'n') {
-				cerr << "Error: Invalid command" << endl;
+				cerr << "Error: invalid command" << endl;
 			}
 
 			else {
@@ -514,7 +509,7 @@ int main(int argc, char *argv[]) {
 		else if(arg == "d") {
 			cin >> int_arg;
 			if(int_arg >= int (excerpt_list.size())) {
-				cerr << "Error: Invalid command" << endl;
+				cerr << "Error: invalid command" << endl;
 			}
 
 			else {
@@ -523,8 +518,42 @@ int main(int argc, char *argv[]) {
 			}
 		}
 
+//		h = help
+//		Syntax: % h
+		else if(arg == "h") {
+			cout << "Commands:" << '\n'
+			<< '\t' << "t ­= timestamp search" << '\n'
+			<< '\t' << "Syntax: % t <timestamp1>|<timestamp2>" << '\n' << '\n'
+			<< '\t' << "c ­= category search" << '\n'
+			<< '\t' << "Syntax: % c <string>" << '\n' << '\n'
+			<< '\t' << "k = keyword search" << '\n'
+			<< '\t' << "Syntax: % k <string>" << '\n' << '\n'
+			<< '\t' << "a = append log entry​(by entryID)" << '\n'
+			<< '\t' << "Syntax: % a <integer>" << '\n' << '\n'
+			<< '\t' << "r = append search results" << '\n'
+			<< '\t' << "Syntax: % r" << '\n' << '\n'
+			<< '\t' << "d = delete log entry​(by excerpt list number)" << '\n'
+			<< '\t' << "Syntax: % d <integer>" << '\n' << '\n'
+			<< '\t' << "b = move to beginning​(by excerpt list number)" << '\n'
+			<< '\t' << "Syntax: % b <integer>" << '\n' << '\n'
+			<< '\t' << "e = move to end​(by excerpt list number)" << '\n'
+			<< '\t' << "Syntax: % e <integer>" << '\n' << '\n'
+			<< '\t' << "s = sort excerpt list(by timestamp)" << '\n'
+			<< '\t' << "Syntax: % s" << '\n' << '\n'
+			<< '\t' << "l = clear excerpt list" << '\n'
+			<< '\t' << "Syntax: % l" << '\n' << '\n'
+			<< '\t' << "g = print most recent search results" << '\n'
+			<< '\t' << "Syntax: % g" << '\n' << '\n'
+			<< '\t' << "p = print excerpt list" << '\n'
+			<< '\t' << "Syntax: % p" << '\n' << '\n'
+			<< '\t' << "q = quit" << '\n'
+			<< '\t' << "Syntax: % q" << '\n' << '\n'
+			<< '\t' << "# = no operation(useful for adding comments to command files)" << '\n'
+			<< '\t' << "Syntax: % # Any text on a line that begins with # is ignored" << '\n' << endl;
+		}
+
 		else {
-			cerr << "Error: Invalid command" << endl;
+			cerr << "Error: invalid command" << endl;
 		}
 
 		//promt for next command
@@ -541,7 +570,3 @@ int main(int argc, char *argv[]) {
 	cout << os.str();
 	return 0;
 }
-
-///////////////////////////////////////////////////////////
-///////////////////////End of File/////////////////////////
-///////////////////////////////////////////////////////////
