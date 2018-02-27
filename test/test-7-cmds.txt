@@ -1,0 +1,19 @@
+c retruded
+g
+r
+p
+l
+c retruded v
+g
+r
+p
+c  retruded v #
+g
+r
+p
+c     retruded    
+# above tests spaces
+g
+r
+p
+q

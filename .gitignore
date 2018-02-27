@@ -1,0 +1,5 @@
+# .o files
+logManager.o
+
+# executables
+logman

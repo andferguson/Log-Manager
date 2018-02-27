@@ -1,0 +1,15 @@
+g
+r
+k TESTING
+g
+r
+k retruded
+g
+r
+k   retruded (9) halls%%revenge&      calxes  
+# above tests spaces and symbols
+g
+r
+s
+p
+q
