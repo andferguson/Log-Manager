@@ -22,7 +22,7 @@ Run with `logman example-log.txt < example-cmds.txt > example-output.txt`
 Makefile builds an executable program called `logman`. The program will begin by reading an input file containing log entries, and then will enter an interactive mode where the user can perform  timestamp, category, and  keyword searches for the purpose of constructing an "excerpt list" of the log file.  `logman` also allows the user to manage and display this "excerpt list" to identify the important/relevant entries of their log file.
 
 ## Input Format
-On startup, `logman`  reads  a series of log entries from the  master log file, a file specified via the command line. The file is a plain text file which describes a single log entry on every line. Each log entry consists of three fields separated by vertical bar ( '|' ) characters. The first field contains the timestamp of the log entry, the second contains the category of the log entry, and the third contains the message of the log entry. The following is a description of the formats of each field:
+On startup, `logman`  reads  a series of log entries from the  master log file, a file specified via the command line. The file is a plain text file which describes a single log entry on every line. Each log entry consists of three fields separated by vertical bar (`|`) characters. The first field contains the timestamp of the log entry, the second contains the category of the log entry, and the third contains the message of the log entry. The following is a description of the formats of each field:
 
 * Log  timestamps will be given in the format mm:dd:hh:mm:ss , where the various components (month, day, hour, minute, second) between colons are given as a pair of digits.
 
